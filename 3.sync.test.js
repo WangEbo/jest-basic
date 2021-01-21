@@ -37,7 +37,7 @@ it('使用done方法 进行 异步测试', (done) => {
     })
 })
 
-//方式2 使用 Promise 对象 直接 return
+// //方式2 使用 Promise 对象 直接 return
 
 it('使用 Promise 对象测试异步代码', () => {
     return getDataByAxios().then(res => {
@@ -66,11 +66,16 @@ test('请求错误测试', () => {
     return getErrorData().catch(e => {
         expect(e.toString()).toEqual('Error: Request failed with status code 404')
     })
+
+    //反面教材
+    // return getDataByAxios().catch(e => {
+    //     expect(e.toString()).toEqual('Error: Request failed with status code 404')
+    // })
 })
 
 
-//方式3  直接 使用 return  + resolves / rejects 写法
-//.resolves 和 .rejects 可以将promise 的值返回，方便直接链式调用匹配器
+// //方式3  直接 使用 return  + resolves / rejects 写法
+// //.resolves 和 .rejects 可以将promise 的值返回，方便直接链式调用匹配器
 
 
 test('测试直接 用 .resolves 测试异步代码', () => {
@@ -81,12 +86,12 @@ test('测试直接 用 .resolves 测试异步代码', () => {
     })
 })
 
-test('测试 .rejects 测试异步代码', () => {
-    return expect(getErrorData()).rejects.toThrow();
-})
+// test('测试 .rejects 测试异步代码', () => {
+//     return expect(getErrorData()).rejects.toThrow();
+// })
 
 
-//方式4  使用 async awiat
+// //方式4  使用 async awiat
 
 test('测试getData, 使用__mocks__', async () => {
     const data = await getDataByAxios();
